@@ -14,6 +14,12 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Build", "Build", "{CD73CDB7
 		paket.dependencies = paket.dependencies
 	EndProjectSection
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Build", "Build", "{E37CA564-A9AC-4F7C-A112-0D9DB620B8F0}"
+	ProjectSection(SolutionItems) = preProject
+		build\PatchVersion.fsx = build\PatchVersion.fsx
+		build\Publish.fsx = build\Publish.fsx
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,5 +33,8 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{E37CA564-A9AC-4F7C-A112-0D9DB620B8F0} = {CD73CDB7-FF95-4465-83BB-701F6457B588}
 	EndGlobalSection
 EndGlobal

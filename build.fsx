@@ -1,18 +1,9 @@
 #r @"packages/build/FAKE/tools/FakeLib.dll"
+#load "./build/Publish.fsx"
+#load "./build/PatchVersion.fsx"
 open Fake
-open System.IO
 
 let config = getBuildParamOrDefault "Config" "Debug"
-let version = getBuildParamOrDefault "Version" "0.0.0.0"
-let nugetApiKey = getBuildParam "NugetApiKey"
-
-let versionRegex = System.Text.RegularExpressions.Regex("""(?<=(AssemblyVersion|AssemblyFileVersion)\(\")[\d\.]+(?=\"\))""")
-
-let patchVersion() =
-  let file = "./src/Properties/AssemblyInfo.cs"
-  let text = File.ReadAllText file
-  let text = versionRegex.Replace( text, version )
-  File.WriteAllText( file, text )
 
 let build target () =
   MSBuildHelper.build 
@@ -22,20 +13,11 @@ let build target () =
                   Verbosity = Some MSBuildVerbosity.Minimal })
     "./erecruit.Maybe.sln"
 
-let publish() =
-  Paket.Pack (fun p -> { p with 
-                          TemplateFile = "./src/paket.template"
-                          BuildConfig = config
-                          OutputPath = "./nupkg" } )
-  Paket.Push (fun p -> { p with
-                          WorkingDir = "./nupkg"
-                          ApiKey = nugetApiKey } )
-
-Target "Build" <| fun _ -> patchVersion(); build "Build" ()
+Target "Build" <| fun _ -> PatchVersion.patchVersion "./src/Properties/AssemblyInfo.cs"; build "Build" ()
 Target "Clean" <| build "Clean"
 Target "Rebuild" DoNothing
 Target "RunTests" DoNothing 
-Target "Publish" <| publish
+Target "Publish" <| Publish.publishPackage config "./src/paket.template"
 
 "Build" ==> "Rebuild"
 "Clean" ==> "Rebuild"
