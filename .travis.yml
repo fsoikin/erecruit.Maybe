@@ -7,4 +7,4 @@ before_script:
 
 script: 
   - ./build.sh RunTests "Version=0.1.$TRAVIS_BUILD_NUMBER"
-  - [ $TRAVIS_PULL_REQUEST = 'false' ] && [ $TRAVIS_BRANCH = 'publish' ] && ./build.sh Publish
+  - "[ $TRAVIS_PULL_REQUEST = 'false' ] && [ $TRAVIS_BRANCH = 'publish' ] && ./build.sh Publish"
