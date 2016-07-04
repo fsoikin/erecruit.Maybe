@@ -24,7 +24,7 @@ let build target () =
 
 let publish() =
   Paket.Pack (fun p -> { p with 
-                          TemplateFile = !! "paket.template" |> Seq.head 
+                          TemplateFile = "./src/paket.template"
                           BuildConfig = config
                           OutputPath = "./nupkg" } )
   Paket.Push (fun p -> { p with
