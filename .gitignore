@@ -1,0 +1,9 @@
+obj/
+bin/
+*.suo
+*proj.user
+/.vs/
+/.paket/
+!/.paket/paket.bootstrapper.exe
+/packages/
+/.fake/
