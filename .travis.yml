@@ -6,5 +6,4 @@ before_script:
  - chmod +x ./build.sh
 
 script: 
-  - ./build.sh RunTests "Version=0.1.$TRAVIS_BUILD_NUMBER"
-  - '[ $TRAVIS_PULL_REQUEST = "false" ] && [ $TRAVIS_BRANCH = "publish" ] && ./build.sh Publish || echo "Skipping publish (PR=$TRAVIS_PULL_REQUEST, branch=$TRAVIS_BRANCH)"'
+  - 'if [[ $TRAVIS_PULL_REQUEST = "false" && $TRAVIS_BRANCH = "publish" ]] ; then ./build.sh Publish "Version=0.1.$TRAVIS_BUILD_NUMBER" ; else ./build.sh RunTests ; fi'
