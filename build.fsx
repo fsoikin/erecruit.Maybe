@@ -16,7 +16,7 @@ let build target () =
 Target "Build" <| fun _ -> PatchVersion.patchVersion "./src/Properties/AssemblyInfo.cs"; build "Build" ()
 Target "Clean" <| build "Clean"
 Target "Rebuild" DoNothing
-Target "RunTests" DoNothing 
+Target "RunTests" <| fun _ -> [sprintf "./tests/bin/%s/erecruit.Maybe.Tests.dll" config] |> Fake.Testing.XUnit2.xUnit2 id 
 Target "Publish" <| Publish.publishPackage config "./src/paket.template"
 
 "Build" ==> "Rebuild"
