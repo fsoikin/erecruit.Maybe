@@ -85,7 +85,7 @@ namespace erecruit.Utils
 		[DebuggerStepThrough]
 		class _Nothing : Maybe<T>
 		{
-			public override T Value { get { throw new InvalidOperationException( "The Maybe wrapper contains no value." ); } }
+			public override T Value { get { throw new Maybe.NoValueException(); } }
 			public override Maybe.Kind Kind { get { return Maybe.Kind.Nothing; } }
 			public override Maybe.Error Error { get { return null; } }
 			protected override Maybe<V> ChangeType<V>() { return Maybe<V>.Nothing; }
@@ -143,7 +143,7 @@ namespace erecruit.Utils
 	}
 
 	[DebuggerStepThrough]
-	public static class Maybe
+	public static partial class Maybe
 	{
 		public enum Kind { Nothing, Value, Error };
 
