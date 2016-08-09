@@ -491,10 +491,7 @@ namespace erecruit.Utils
 
 			public static Error Format( string formatString, params object[] args ) { return new Error( string.Format( formatString, args ) ); }
 
-			public void Throw() {
-				if ( this.Exception != null ) throw new InvalidOperationException( "An exception was thrown during a Maybe computation", this.Exception );
-				throw new InvalidOperationException( string.Join( ", ", this.Messages ) );
-			}
+			public void Throw() { throw new ComputationErrorException(this); }
 
 			public override string ToString() {
 				return string.Join( Environment.NewLine, Messages );
