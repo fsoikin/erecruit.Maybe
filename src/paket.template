@@ -2,7 +2,7 @@ type project
 licenseUrl http://opensource.org/licenses/MIT
 description C# implementation of the Maybe (optional value) wrapper with fluent and LINQ APIs.
 tags maybe optional option monad
-projectUrl https://github.com/erecruit/Maybe
-licenseUrl https://github.com/erecruit/Maybe/blob/master/LICENSE
+projectUrl https://github.com/fsoikin/Maybe
+licenseUrl https://github.com/fsoikin/Maybe/blob/master/LICENSE
 authors erecruit, Fyodor Soikin
 owners erecruit
